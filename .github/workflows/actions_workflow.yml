@@ -56,11 +56,13 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_KEY }}
           AWS_DEFAULT_REGION: 'us-east-1'
 
-      - name: deploy code
-        run: |
-          envsubst manifests/go-redis-app.yml
-          cat manifests/go-redis-app.yml
-          kubectl apply -f manifests
+      - name: Switch to staging cluster
+        run: kubectl config use-context staging
+      - uses: swdotcom/update-and-apply-kubernetes-configs@v1
+        with:
+          k8-config-file-paths: |
+            manifests
+          replacement-method: defined
         env:
           IMAGE_TAG: ${{ github.run_id }}
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_SECRET }}
