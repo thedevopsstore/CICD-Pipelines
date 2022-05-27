@@ -59,6 +59,7 @@ jobs:
       - name: deploy code
         run: |
           envsubst manifests/go-redis-app.yml
+          cat manifests/go-redis-app.yml
           kubectl apply -f manifests
         env:
           IMAGE_TAG: ${{ github.run_id }}
