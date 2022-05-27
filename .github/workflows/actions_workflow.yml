@@ -57,7 +57,6 @@ jobs:
           AWS_DEFAULT_REGION: 'us-east-1'
 
       - name: Switch to staging cluster
-        run: kubectl config use-context staging
       - uses: swdotcom/update-and-apply-kubernetes-configs@v1
         with:
           k8-config-file-paths: |
