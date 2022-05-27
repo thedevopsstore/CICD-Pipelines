@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: go-redis-app
-        image: docker.io/lwplapbs/go-redis-app:$IMAGE_TAG
+        image: docker.io/lwplapbs/go-redis-app:${IMAGE_TAG}
         imagePullPolicy: IfNotPresent
         resources:
           requests:
